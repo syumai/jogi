@@ -1,0 +1,14 @@
+#!/usr/bin/ruby
+
+require_relative '../lib/jogi'
+
+require 'json'
+
+result = case ARGV.first
+when 'length'
+	Jogi.length
+when 'size'
+	Jogi.size
+end
+
+puts JSON.pretty_generate(result)

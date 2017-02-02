@@ -12,8 +12,8 @@ module Jogi
             movie_file_path = File.expand_path(name, path)
             duration = get_movie_duration(movie_file_path)
             {
-              name: name,
-              duration: formatted ? Time.at(duration).utc.strftime("%H:%M:%S") : duration
+              'name' => name,
+              'duration' => formatted ? Time.at(duration).utc.strftime("%H:%M:%S") : duration
             }
           }
         }

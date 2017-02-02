@@ -10,9 +10,9 @@ module Jogi
           dir.select{|f| /\.(jpg|png|bmp|gif)$/i =~ f}.map{|name| 
             width, height = FastImage.size("#{path}/#{name}")
             {
-              name: name,
-              width: width,
-              height: height
+              'name' => name,
+              'width' => width,
+              'height' => height
             }
           }
         }

@@ -3,23 +3,32 @@
 require_relative '../lib/jogi'
 
 require 'json'
+require 'yaml'
 require 'thor'
 
 class JogiCommand < Thor
+	package_name "Jogi"
 	default_command :size
 
-	desc 'size', 'get size of images or videos'
+	desc 'size', 'Get size of images or videos'
+	option :yaml, type: :boolean, aliases: '-y', desc: 'Output result as YAML'
 	def size(dir_path)
 		result = Jogi.size
-		puts JSON.pretty_generate(result)
+		output(result, options.yaml?)
 	end
 
 	desc 'duration', 'get durations of videos'
 	option :format, type: :boolean, aliases: '-f', desc: 'Format duration (seconds to HH:MM:SS)'
+	option :yaml, type: :boolean, aliases: '-y', desc: 'Output result as YAML'
 	def duration(dir_path)
-		result = Jogi.duration(options[:format])
-		puts JSON.pretty_generate(result)
+		result = Jogi.duration(options.format?)
+		output(result, options.yaml?)
 	end
+
+	private
+		def output(result, yaml)
+			puts (yaml ? result.to_yaml : JSON.pretty_generate(result))
+		end
 end
 
 JogiCommand.start

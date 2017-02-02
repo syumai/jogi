@@ -7,8 +7,8 @@ module Jogi
       ::Jogi::SizeRuler.measure
     end
 
-    def duration
-      ::Jogi::DurationRuler.measure
+    def duration(formatted)
+      ::Jogi::DurationRuler.measure(formatted)
     end
   end
 end

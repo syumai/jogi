@@ -5,7 +5,7 @@ require 'mime/types'
 module Jogi
   class DurationRuler
     class << self
-      def measure
+      def measure(formatted = false)
         path = File.expand_path(ARGV.last, __FILE__)
         result = Dir.open(path){|dir|
           dir.select{|f| video_extensions_regexp =~ f}.map{|name| 
@@ -13,7 +13,7 @@ module Jogi
             duration = get_movie_duration(movie_file_path)
             {
               name: name,
-              duration: duration
+              duration: formatted ? Time.at(duration).utc.strftime("%H:%M:%S") : duration
             }
           }
         }

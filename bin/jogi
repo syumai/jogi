@@ -17,7 +17,7 @@ class JogiCommand < Thor
 		output(result, options.yaml?)
 	end
 
-	desc 'duration', 'get durations of videos'
+	desc 'duration', 'Get durations of videos'
 	option :format, type: :boolean, aliases: '-f', desc: 'Format duration (seconds to HH:MM:SS)'
 	option :yaml, type: :boolean, aliases: '-y', desc: 'Output result as YAML'
 	def duration(dir_path)

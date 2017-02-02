@@ -1,6 +1,6 @@
 # Jogi
 
-Command line tool for getting information of images and videos. (like image size, video length, etc...)
+Command line tool for getting information of images and videos. (like image size, video duration, etc...)
 
 ## Usage
 
@@ -22,18 +22,18 @@ $ jogi size ~/Pictures/hoge/
 ]
 ```
 
-### Get video lengths
+### Get video durations
 
 ```sh
-$ jogi length ~/Pictures/hoge/
+$ jogi duration ~/Movies/hoge/
 [
 	{
 		"name": "hoge.mp4",
-		"length": "02:13"
+		"duration": "02:13"
 	},
 	{
 		"name": "huga.mov",
-		"length": "01:00"
+		"duration": "01:00"
 	}
 ]
 ```
@@ -41,7 +41,7 @@ $ jogi length ~/Pictures/hoge/
 ### Set output format
 
 ```sh
-$ jogi size -f yaml ~/Pictures/hoge/
+$ jogi size --yaml ~/Pictures/hoge/
 - name: hoge.jpg
   width: 128
   height: 128
@@ -49,6 +49,8 @@ $ jogi size -f yaml ~/Pictures/hoge/
   width: 256
   height: 512
 ```
+
+### Set default configurations (WIP)
 
 ~/.jogirc
 

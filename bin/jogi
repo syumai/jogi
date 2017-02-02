@@ -5,8 +5,8 @@ require_relative '../lib/jogi'
 require 'json'
 
 result = case ARGV.first
-when 'length'
-	Jogi.length
+when 'duration'
+	Jogi.duration
 when 'size'
 	Jogi.size
 end

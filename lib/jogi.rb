@@ -1,5 +1,5 @@
 require_relative 'jogi/size_ruler'
-require_relative 'jogi/length_ruler'
+require_relative 'jogi/duration_ruler'
 
 module Jogi
   class << self
@@ -7,8 +7,8 @@ module Jogi
       ::Jogi::SizeRuler.measure
     end
 
-    def length
-      ::Jogi::LengthRuler.measure
+    def duration
+      ::Jogi::DurationRuler.measure
     end
   end
 end

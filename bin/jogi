@@ -19,6 +19,7 @@ class JogiCommand < Thor
 
 	desc 'duration', 'Get durations of videos'
 	option :format, type: :boolean, aliases: '-f', desc: 'Format duration (seconds to HH:MM:SS)'
+	option :format_template, type: :string, aliases: '-F', desc: 'Set format template (hms or ms)'
 	option :yaml, type: :boolean, aliases: '-y', desc: 'Output result as YAML'
 	def duration(dir_path)
 		result = Jogi.duration(options.format?)

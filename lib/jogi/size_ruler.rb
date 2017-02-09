@@ -6,17 +6,17 @@ module Jogi
     class << self
       def measure
         path = File.expand_path(ARGV.last, __FILE__)
-        result = Dir.open(path){|dir|
-          dir.select{|f| /\.(jpg|png|bmp|gif)$/i =~ f}.map{|name| 
-            width, height = FastImage.size("#{path}/#{name}")
+        Dir.open(path)
+          .select{|f| /\.(jpg|png|bmp|gif)$/i =~ f}
+          .map{|name| 
+            image_file_path = File.expand_path(name, path)
+            width, height = FastImage.size(image_file_path)
             {
               'name' => name,
               'width' => width,
               'height' => height
             }
           }
-        }
-        result
       end
     end
   end

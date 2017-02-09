@@ -7,8 +7,9 @@ module Jogi
     class << self
       def measure(formatted = false)
         path = File.expand_path(ARGV.last, __FILE__)
-        result = Dir.open(path){|dir|
-          dir.select{|f| Extensions::video_regexp =~ f}.map{|name| 
+        Dir.open(path)
+          .select{|f| Extensions.video_regexp =~ f}
+          .map{|name| 
             movie_file_path = File.expand_path(name, path)
             duration = get_movie_duration(movie_file_path)
             {
@@ -16,8 +17,6 @@ module Jogi
               'duration' => formatted ? Time.at(duration).utc.strftime("%H:%M:%S") : duration
             }
           }
-        }
-        result
       end
 
       private

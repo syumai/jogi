@@ -8,7 +8,7 @@ module Jogi
       def measure(path, **options)
         if File.directory?(path)
           Dir.open(path)
-            .select{|f| Extensions.video_regexp =~ f}
+            .grep(Extensions.video_regexp)
             .map{|name| generate_hash(name, path, options[:formatted])}
         else
           generate_hash(File.basename(path), File.dirname(path), options[:formatted])

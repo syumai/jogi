@@ -7,7 +7,7 @@ module Jogi
       def measure(path)
         if File.directory?(path)
           Dir.open(path)
-            .select{|f| /\.(jpg|png|bmp|gif)$/i =~ f}
+            .grep(/\.(jpg|png|bmp|gif)$/i)
             .map{|name| generate_hash(name, path)}
         else
           generate_hash(File.basename(path), File.dirname(path))

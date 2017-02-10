@@ -3,8 +3,8 @@ require_relative 'jogi/duration_ruler'
 
 module Jogi
   class << self
-    def size
-      ::Jogi::SizeRuler.measure
+    def size(path)
+      ::Jogi::SizeRuler.measure(path)
     end
 
     def duration(path, **options)

@@ -17,12 +17,12 @@ module Jogi
 
       private
         def generate_hash(name, path, formatted)
-            movie_file_path = File.expand_path(name, path)
-            duration = get_movie_duration(movie_file_path)
-            {
-              'name' => name,
-              'duration' => formatted ? Time.at(duration).utc.strftime("%H:%M:%S") : duration
-            }
+          movie_file_path = File.expand_path(name, path)
+          duration = get_movie_duration(movie_file_path)
+          {
+            'name' => name,
+            'duration' => formatted ? Time.at(duration).utc.strftime("%H:%M:%S") : duration
+          }
         end
 
         def get_movie_duration(movie_file_path)

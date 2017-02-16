@@ -12,9 +12,10 @@ class JogiCommand < Thor
 
   desc 'size', 'Get size of images or videos'
   option :yaml, type: :boolean, aliases: '-y', desc: 'Output result as YAML'
+  option :css, type: :boolean, aliases: '-c', desc: 'Output result as CSS'
   def size(path)
     result = Jogi.size(path)
-    output(result, options.yaml?)
+    output(result, options)
   end
 
   desc 'duration', 'Get durations of videos'
@@ -23,12 +24,33 @@ class JogiCommand < Thor
   option :yaml, type: :boolean, aliases: '-y', desc: 'Output result as YAML'
   def duration(path)
     result = Jogi.duration(path, formatted: options.format?)
-    output(result, options.yaml?)
+    output(result, options)
   end
 
   private
-    def output(result, yaml)
-      puts (yaml ? result.to_yaml : JSON.pretty_generate(result))
+    def output(result, options)
+      detect_format = ->(opts) {
+        if options.yaml?
+          :yaml
+        elsif options.css?
+          :css
+        else
+          :json
+        end
+      }
+
+      case detect_format.call(options)
+      when :yaml
+        puts result.to_yaml
+      when :css
+        puts result.map {|image|
+          "img.#{File.basename(image['name'], '.*')} {
+  width: #{image['width']}px;
+  height: #{image['height']}px;
+}"}
+      else 
+        puts JSON.pretty_generate(result)
+      end
     end
 end
 

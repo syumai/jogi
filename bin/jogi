@@ -44,7 +44,7 @@ class JogiCommand < Thor
         puts result.to_yaml
       when :css
         puts result.map {|image|
-          "img.#{File.basename(image['name'], '.*')} {
+"img.#{File.basename(image['name'], '.*')} {
   width: #{image['width']}px;
   height: #{image['height']}px;
 }"}
